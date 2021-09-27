@@ -1,11 +1,12 @@
 #!/bin/bash
 # script to set up a new user in Kali
-# Adds a new user, changes their shell to ZSH, and adds them to sudoers
+# creates user, changes their shell to zsh, and adds them to sudoers
 
-if [ "$1" == "" ] 
-then 
-echo "./newuser.sh <username>"
-
+if [ "$#" -ne 1 ] 
+    then 
+        echo "usage: ./newuser.sh <username>"
 else
-USER=$1; sudo adduser $USER && sudo chsh -s /usr/bin/zsh $USER  && sudo usermod -aG sudo $USER
+
+    sudo adduser $1 && sudo chsh -s /usr/bin/zsh $1; sudo usermod -aG sudo $1
+
 fi
